@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ComputeFibonacci">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ComputeFibonacciResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ComputeFibonacciResult" type="tns:WebServiceReponseOfInt32" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebServiceReponseOfInt32">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Messages" type="tns:ArrayOfReponseMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReponseMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReponseMessage" nillable="true" type="tns:ReponseMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReponseMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:MessageType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MessageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Warning" />
+          <s:enumeration value="Info" />
+          <s:enumeration value="Error" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="Division">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="number1" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="number2" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DivisionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DivisionResult" type="tns:WebServiceReponseOfInt32" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ComputeFibonacciSoapIn">
+    <wsdl:part name="parameters" element="tns:ComputeFibonacci" />
+  </wsdl:message>
+  <wsdl:message name="ComputeFibonacciSoapOut">
+    <wsdl:part name="parameters" element="tns:ComputeFibonacciResponse" />
+  </wsdl:message>
+  <wsdl:message name="DivisionSoapIn">
+    <wsdl:part name="parameters" element="tns:Division" />
+  </wsdl:message>
+  <wsdl:message name="DivisionSoapOut">
+    <wsdl:part name="parameters" element="tns:DivisionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FibonacciWebserviceSoap">
+    <wsdl:operation name="ComputeFibonacci">
+      <wsdl:input message="tns:ComputeFibonacciSoapIn" />
+      <wsdl:output message="tns:ComputeFibonacciSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Division">
+      <wsdl:input message="tns:DivisionSoapIn" />
+      <wsdl:output message="tns:DivisionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FibonacciWebserviceSoap" type="tns:FibonacciWebserviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComputeFibonacci">
+      <soap:operation soapAction="http://tempuri.org/ComputeFibonacci" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Division">
+      <soap:operation soapAction="http://tempuri.org/Division" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FibonacciWebserviceSoap12" type="tns:FibonacciWebserviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ComputeFibonacci">
+      <soap12:operation soapAction="http://tempuri.org/ComputeFibonacci" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Division">
+      <soap12:operation soapAction="http://tempuri.org/Division" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FibonacciWebservice">
+    <wsdl:port name="FibonacciWebserviceSoap" binding="tns:FibonacciWebserviceSoap">
+      <soap:address location="http://localhost:52811/WebServices/FibonacciWebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FibonacciWebserviceSoap12" binding="tns:FibonacciWebserviceSoap12">
+      <soap12:address location="http://localhost:52811/WebServices/FibonacciWebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

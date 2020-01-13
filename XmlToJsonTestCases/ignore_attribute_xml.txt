@@ -1,0 +1,1 @@
+<foo attr_name="attr_value">bar</foo>

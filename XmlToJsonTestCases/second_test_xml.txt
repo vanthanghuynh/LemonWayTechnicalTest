@@ -1,0 +1,4 @@
+<foo>
+	<bar>value</bar>
+	<tag attr_name="attr_value">tagValue</tag>
+</foo>
