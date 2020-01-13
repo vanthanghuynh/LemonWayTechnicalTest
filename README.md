@@ -17,4 +17,7 @@ The following nuget packages were used in the projects:
 - Autofac 4.9.4.0
 - Autofac.Web 4.0.0.0
 - Newtonsoft.Json  12.0.0.0
+- log4net 2.0.8.0
 
+# Log files
+The location of log file is in: C:\Temp\logs\LemonWay_WebService.log
